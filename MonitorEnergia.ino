@@ -36,16 +36,16 @@ static const adc_unit_t unit = ADC_UNIT_1;
 #define ADC_COUNTS  (1<<ADC_BITS)
 // Calibrar aqui a Corrente
 // Pino, calibracao - Cur Const= Ratio/BurdenR. 2000/33 = 60 --> https://www.filipeflop.com/blog/medidor-de-corrente-sct013-com-arduino/
-ICAL = 60;
-offsetI = ADC_COUNTS>>1;
-double filteredI = 0;
-double last_filtered_value;
-double offsetI, sqI, sumI, Irms;
+float ICAL = 60;
+float offsetI = ADC_COUNTS>>1;
+float filteredI = 0;
+float last_filtered_value;
+double  sqI, sumI, Irms;
 int sample = 0;
 
 
 void floatToWordArray(float , word * );
-
+float calcIrms(const int, unsigned int);
 
 
 /** From --> http://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/adc.html
